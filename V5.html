@@ -760,48 +760,84 @@
 		</div>
     </section>
 
-		<!-- Customer Feedback -->
-		<section id="feedback" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
+<!-- Customer Feedback -->
+<section id="feedback" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
   <div class="container mx-auto px-4">
     <div class="text-center mb-4">
-      <h2 class="text-3xl font-bold mb-2">Customer Feedback</h2>
+      <h2 class="text-3xl font-bold mb-2 text-white">Customer Feedback</h2>
     </div>
 
-    <div class="flex items-center justify-center gap-4">
+    <div class="flex items-center justify-center gap-4 flex-wrap">
       <!-- Left Arrow -->
-		<button onclick="prevTestimonial()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
-		<svg class="w-6 h-6 md:w-8 md:h-8 transform rotate-180" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-		</svg>
-		</button>
+      <button onclick="prevTestimonial()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transition-transform hover:scale-105">
+        <svg class="w-6 h-6 md:w-8 md:h-8 transform rotate-180" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
 
       <!-- Testimonials -->
-      <div id="testimonial-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 flex-1"></div>
+      <div class="relative overflow-hidden flex-1 w-full max-w-full">
+        <div id="testimonial-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
+          <!-- Injected via JS -->
+        </div>
+      </div>
 
       <!-- Right Arrow -->
-		<button onclick="nextTestimonial()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
-		<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-		</svg>
-		</button>
+      <button onclick="nextTestimonial()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transition-transform hover:scale-105">
+        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     </div>
 
     <!-- Leave a Review -->
     <div class="text-center mt-10">
-      <button onclick="toggleReviewForm()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
-		Leave a Review
-	  </button>
+      <button onclick="toggleReviewForm()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
+        Leave a Review
+      </button>
       <form id="review-form" class="mt-4 hidden max-w-xl mx-auto space-y-4">
         <input type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded-md p-2" required>
         <input type="text" placeholder="Company Name" class="w-full border border-gray-300 rounded-md p-2" required>
         <textarea placeholder="Your Message" class="w-full border border-gray-300 rounded-md p-2" required></textarea>
-        <button type="submit" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
-			Submit
-		</button>
+        <button type="submit" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
+          Submit
+        </button>
       </form>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(100%);
+      opacity: 0.5;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(-100%);
+      opacity: 0.5;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-left {
+    animation: slideInLeft 0.3s ease-in-out;
+  }
+
+  .slide-right {
+    animation: slideInRight 0.3s ease-in-out;
+  }
+</style>
 
 <script>
   const testimonials = [
@@ -838,33 +874,46 @@
   ];
 
   let currentIndex = 0;
+  let animating = false;
 
-  function renderTestimonials() {
+  function renderTestimonials(direction = "next") {
     const container = document.getElementById("testimonial-container");
-    container.innerHTML = "";
+    if (animating) return;
 
-    for (let i = 0; i < 3; i++) {
-      const index = (currentIndex + i) % testimonials.length;
-      const t = testimonials[index];
-      container.innerHTML += `
-        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col justify-between min-h-[320px]">
-          <p class="text-gray-600 mb-6">${t.name}</p>
-          <div class="flex flex-col justify-between flex-grow">
-            <h4 class="font-semibold">${t.message}</h4>
-            <br><p class="text-sm text-gray-500">${t.role}</p>
-          </div>
-        </div>`;
-    }
+    animating = true;
+    container.classList.remove("slide-left", "slide-right");
+    void container.offsetWidth; // trigger reflow
+
+    container.classList.add(direction === "next" ? "slide-left" : "slide-right");
+
+    setTimeout(() => {
+      container.innerHTML = "";
+
+      for (let i = 0; i < 3; i++) {
+        const index = (currentIndex + i) % testimonials.length;
+        const t = testimonials[index];
+        container.innerHTML += `
+          <div class="bg-white p-6 rounded-lg shadow-md min-h-[320px] flex flex-col justify-between">
+            <p class="text-blue-800 font-semibold">${t.name}</p>
+            <div class="flex flex-col justify-between flex-grow">
+              <p class="text-gray-700 my-4">${t.message}</p>
+              <p class="text-sm text-gray-500">${t.role}</p>
+            </div>
+          </div>`;
+      }
+
+      animating = false;
+    }, 300); // match animation duration
   }
 
   function nextTestimonial() {
     currentIndex = (currentIndex + 1) % testimonials.length;
-    renderTestimonials();
+    renderTestimonials("next");
   }
 
   function prevTestimonial() {
     currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-    renderTestimonials();
+    renderTestimonials("prev");
   }
 
   function toggleReviewForm() {
@@ -872,30 +921,24 @@
     form.classList.toggle("hidden");
   }
 
-  // Swipe Support for Mobile
+  // Swipe Support
   let touchStartX = 0;
   let touchEndX = 0;
+  const swipeContainer = document.getElementById("testimonial-container");
 
-  const container = document.getElementById("testimonial-container");
-
-  container.addEventListener('touchstart', (e) => {
+  swipeContainer.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   });
 
-  container.addEventListener('touchend', (e) => {
+  swipeContainer.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
-    handleSwipeGesture();
+    const deltaX = touchEndX - touchStartX;
+    if (Math.abs(deltaX) > 50) {
+      deltaX > 0 ? prevTestimonial() : nextTestimonial();
+    }
   });
 
-  function handleSwipeGesture() {
-    const threshold = 50;
-    const deltaX = touchEndX - touchStartX;
-    if (Math.abs(deltaX) > threshold) {
-      if (deltaX > 0) prevTestimonial();
-      else nextTestimonial();
-    }
-  }
-
+  // Initial render
   renderTestimonials();
 </script>
 
