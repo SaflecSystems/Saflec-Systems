@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saflec Systems</title>
+  <title>V5</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -186,7 +186,7 @@
 </script>
 
 <!-- About Section -->
-<section id="about" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
+<section id="about" class="py-10 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-4">
       <h2 class="text-3xl font-bold text-black mb-2">About Saflec Systems</h2>
@@ -444,7 +444,7 @@
 </script>
 
 		<!-- News -->
-		<section id="news" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
+		<section id="news" class="py-10 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-4">
       <h2 class="text-3xl font-bold mb-2">Our Latest News</h2>
@@ -760,48 +760,45 @@
 		</div>
     </section>
 
-<!-- Customer Feedback -->
-<section id="feedback" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
+		<!-- Customer Feedback -->
+		<section id="feedback" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
   <div class="container mx-auto px-4">
     <div class="text-center mb-4">
-      <h2 class="text-3xl font-bold mb-2 text-white">Customer Feedback</h2>
+      <h2 class="text-3xl font-bold mb-2">Customer Feedback</h2>
+      <div class="w-72 h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 mx-auto"></div>
     </div>
 
-    <div class="flex items-center justify-center gap-4 flex-wrap">
+    <div class="flex items-center justify-center gap-4">
       <!-- Left Arrow -->
-      <button onclick="prevTestimonial()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transition-transform hover:scale-105">
-        <svg class="w-6 h-6 md:w-8 md:h-8 transform rotate-180" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+		<button onclick="prevTestimonial()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
+		<svg class="w-6 h-6 md:w-8 md:h-8 transform rotate-180" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+		</svg>
+		</button>
 
-      <!-- Testimonials Slider -->
-      <div class="relative overflow-hidden flex-1 w-full max-w-full">
-        <div id="testimonial-slider" class="flex gap-4 transition-transform duration-500 ease-in-out will-change-transform">
-          <!-- JS will inject slides here -->
-        </div>
-      </div>
+      <!-- Testimonials -->
+      <div id="testimonial-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 flex-1"></div>
 
       <!-- Right Arrow -->
-      <button onclick="nextTestimonial()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transition-transform hover:scale-105">
-        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+		<button onclick="nextTestimonial()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white rounded-full p-3 shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
+		<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+		</svg>
+		</button>
     </div>
 
     <!-- Leave a Review -->
     <div class="text-center mt-10">
-      <button onclick="toggleReviewForm()" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
-        Leave a Review
-      </button>
+      <button onclick="toggleReviewForm()" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
+		Leave a Review
+	  </button>
       <form id="review-form" class="mt-4 hidden max-w-xl mx-auto space-y-4">
         <input type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded-md p-2" required>
         <input type="text" placeholder="Company Name" class="w-full border border-gray-300 rounded-md p-2" required>
         <textarea placeholder="Your Message" class="w-full border border-gray-300 rounded-md p-2" required></textarea>
-        <button type="submit" class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
-          Submit
-        </button>
+        <button type="submit" class="inline-block bg-gradient-to-r from-blue-500 via-blue-600 to-blue-800 text-white font-semibold px-6 py-3 rounded-full shadow-lg transform transition hover:scale-105 hover:from-blue-600 hover:via-blue-700 hover:to-blue-900">
+			Submit
+		</button>
       </form>
     </div>
   </div>
@@ -841,46 +838,34 @@
     },
   ];
 
-  const slider = document.getElementById("testimonial-slider");
   let currentIndex = 0;
-  let itemsPerSlide = getItemsPerSlide();
 
-  function getItemsPerSlide() {
-    return window.innerWidth < 768 ? 1 : 3;
-  }
+  function renderTestimonials() {
+    const container = document.getElementById("testimonial-container");
+    container.innerHTML = "";
 
-  function renderSliderItems() {
-    slider.innerHTML = testimonials.map(t => `
-      <div class="w-full md:w-1/3 shrink-0">
-        <div class="bg-white p-6 rounded-lg shadow-md min-h-[320px] mx-1 flex flex-col justify-between">
-          <p class="text-blue-800 font-semibold">${t.name}</p>
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      const t = testimonials[index];
+      container.innerHTML += `
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col justify-between min-h-[320px]">
+          <p class="text-gray-600 mb-6">${t.name}</p>
           <div class="flex flex-col justify-between flex-grow">
-            <p class="text-gray-700 my-4">${t.message}</p>
-            <p class="text-sm text-gray-500">${t.role}</p>
+            <h4 class="font-semibold">${t.message}</h4>
+            <br><p class="text-sm text-gray-500">${t.role}</p>
           </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function updateSlider() {
-    itemsPerSlide = getItemsPerSlide();
-    const offset = (100 / itemsPerSlide) * currentIndex;
-    slider.style.transform = `translateX(-${offset}%)`;
+        </div>`;
+    }
   }
 
   function nextTestimonial() {
-    itemsPerSlide = getItemsPerSlide();
-    const maxIndex = testimonials.length - itemsPerSlide;
-    currentIndex = (currentIndex + 1 > maxIndex) ? 0 : currentIndex + 1;
-    updateSlider();
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    renderTestimonials();
   }
 
   function prevTestimonial() {
-    itemsPerSlide = getItemsPerSlide();
-    const maxIndex = testimonials.length - itemsPerSlide;
-    currentIndex = (currentIndex - 1 < 0) ? maxIndex : currentIndex - 1;
-    updateSlider();
+    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    renderTestimonials();
   }
 
   function toggleReviewForm() {
@@ -888,34 +873,35 @@
     form.classList.toggle("hidden");
   }
 
-  // Swipe Support
+  // Swipe Support for Mobile
   let touchStartX = 0;
   let touchEndX = 0;
 
-  slider.addEventListener('touchstart', (e) => {
+  const container = document.getElementById("testimonial-container");
+
+  container.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   });
 
-  slider.addEventListener('touchend', (e) => {
+  container.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
+    handleSwipeGesture();
+  });
+
+  function handleSwipeGesture() {
+    const threshold = 50;
     const deltaX = touchEndX - touchStartX;
-    if (Math.abs(deltaX) > 50) {
-      deltaX > 0 ? prevTestimonial() : nextTestimonial();
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) prevTestimonial();
+      else nextTestimonial();
     }
-  });
+  }
 
-  // Resize Handler
-  window.addEventListener('resize', () => {
-    itemsPerSlide = getItemsPerSlide();
-    updateSlider();
-  });
-
-  renderSliderItems();
-  updateSlider();
+  renderTestimonials();
 </script>
 
 <!-- Meet The Team -->
-<section id="team" class="py-10 bg-gradient-to-r from-blue-500 via-blue-250 to-blue-100">
+<section id="team" class="py-10 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-4">
       <h2 class="text-3xl font-bold mb-2">Meet The Team</h2>
