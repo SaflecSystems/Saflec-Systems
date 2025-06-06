@@ -946,102 +946,92 @@
     <!-- Employee list -->
     <div id="employee-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
       <!-- Leadership -->
-      <div class="employee-card p-4 border rounded" data-department="leadership">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="leadership">
         <h3 class="text-lg font-semibold">Gordon Curr</h3>
         <p>CEO</p>
       </div>
 
       <!-- Sales & Marketing -->
-      <div class="employee-card p-4 border rounded" data-department="sales-marketing">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="sales-marketing">
         <h3 class="text-lg font-semibold">Barend Keyser</h3>
         <p>Sales Director</p>
-		<p>Phone: +27 82 906 1720 </p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="sales-marketing">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="sales-marketing">
         <h3 class="text-lg font-semibold">Hanu Keyser</h3>
         <p>Sales & Marketing</p>
-		<p>Phone: +27 63 886 3779 </p>
       </div>
 
       <!-- Support -->
-      <div class="employee-card p-4 border rounded" data-department="support">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="support">
         <h3 class="text-lg font-semibold">Lydon De Jager</h3>
         <p>Technical Support Manager</p>
-		<p>Phone: +27 71 670 3486 </p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="support">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="support">
         <h3 class="text-lg font-semibold">Sheldon Da Silva</h3>
         <p>Technical Support</p>
-		<p>Phone: +27 66 475 0079 </p>
       </div>
 
       <!-- Engineering & Development -->
-      <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">David Corder</h3>
         <p>Managing Director</p>
       </div>
-	  <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">Quinton Dyason</h3>
         <p>General Manager</p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">JP Du Plessis</h3>
         <p>Engineering & Development</p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">Liam Dyason</h3>
         <p>Engineering & Development</p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">Pierre Visser</h3>
         <p>Engineering & Development</p>
       </div>
-	  <div class="employee-card p-4 border rounded" data-department="engineering">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="engineering">
         <h3 class="text-lg font-semibold">Tim Corder</h3>
         <p>Engineering & Development</p>
       </div>
 
       <!-- Accounts/Purchasing -->
-      <div class="employee-card p-4 border rounded" data-department="accounts">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="accounts">
         <h3 class="text-lg font-semibold">Deanne Daniel</h3>
         <p>Finance Director</p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="accounts">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="accounts">
         <h3 class="text-lg font-semibold">Leigh-Ann Hopkins</h3>
         <p>Accounts Assistance</p>
       </div>
 
       <!-- Repairs/Reception -->
-      <div class="employee-card p-4 border rounded" data-department="repairs">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="repairs">
         <h3 class="text-lg font-semibold">Candice Viljoen</h3>
         <p>Receptionist</p>
-		<p>Phone: +27 11 477 4760 </p>
       </div>
-      <div class="employee-card p-4 border rounded" data-department="repairs">
+      <div class="employee-card p-4 bg-gray-100 rounded-xl" data-department="repairs">
         <h3 class="text-lg font-semibold">Job Mbulaheni</h3>
         <p>Repair Technician</p>
       </div>
+    </div>
+  </div>
 
   <style>
-#employee-list {
-  transition: opacity 0.4s ease, max-height 0.5s ease;
-  opacity: 1;  /* changed from 0 to 1 */
-  pointer-events: auto; /* enable pointer events */
-  max-height: 2000px; /* enough height for all cards */
-  overflow: visible; /* to ensure full visibility */
-}
-
-    #employee-list.show {
+    #employee-list {
+      transition: opacity 0.4s ease, max-height 0.5s ease;
       opacity: 1;
       pointer-events: auto;
-      max-height: 2000px; /* enough height for all cards */
+      max-height: 2000px;
+      overflow: visible;
     }
 
     .employee-card {
       transition: opacity 0.3s ease, transform 0.3s ease;
       opacity: 0;
       transform: scale(0.95);
-      height: auto;
       margin-bottom: 1rem;
       display: block;
     }
@@ -1052,65 +1042,54 @@
     }
 
     .department-tab.active {
-      border-color: #3b82f6; /* Tailwind's blue-500 */
-      background-color: #bfdbfe; /* Light blue bg */
+      border-color: #3b82f6;
+      background-color: #bfdbfe;
     }
   </style>
 
   <script>
-const tabs = document.querySelectorAll('.department-tab');
-const employees = document.querySelectorAll('.employee-card');
-const employeeList = document.getElementById('employee-list');
+    const tabs = document.querySelectorAll('.department-tab');
+    const employees = document.querySelectorAll('.employee-card');
+    const employeeList = document.getElementById('employee-list');
 
-let activeDepartment = 'all'; // default to all employees shown
+    let activeDepartment = 'all';
 
-// Function to show employees based on department
-function showEmployees(department) {
-  employees.forEach((emp) => {
-    if (department === 'all' || emp.getAttribute('data-department') === department) {
-      emp.style.display = 'block';
-      setTimeout(() => {
-        emp.classList.add('show');
-      }, 50);
-    } else {
-      emp.classList.remove('show');
-      setTimeout(() => {
-        emp.style.display = 'none';
-      }, 300);
-    }
-  });
-  employeeList.classList.add('show');
-}
-
-tabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    const selectedDepartment = tab.getAttribute('data-department');
-
-    // If clicking on the currently active tab, do nothing (keep showing)
-    if (activeDepartment === selectedDepartment) {
-      return;
+    function showEmployees(department) {
+      employees.forEach((emp) => {
+        if (department === 'all' || emp.getAttribute('data-department') === department) {
+          emp.style.display = 'block';
+          setTimeout(() => {
+            emp.classList.add('show');
+          }, 50);
+        } else {
+          emp.classList.remove('show');
+          setTimeout(() => {
+            emp.style.display = 'none';
+          }, 300);
+        }
+      });
+      employeeList.classList.add('show');
     }
 
-    activeDepartment = selectedDepartment;
-    tabs.forEach((t) => t.classList.remove('active'));
-    tab.classList.add('active');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selectedDepartment = tab.getAttribute('data-department');
+        if (activeDepartment === selectedDepartment) return;
 
-    showEmployees(selectedDepartment);
-  });
-});
+        activeDepartment = selectedDepartment;
+        tabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
 
-// On page load, show all employees and activate "All Employees" tab
-window.addEventListener('DOMContentLoaded', () => {
-  tabs.forEach((tab) => {
-    if (tab.getAttribute('data-department') === 'all') {
-      tab.classList.add('active');
-    } else {
-      tab.classList.remove('active');
-    }
-  });
+        showEmployees(selectedDepartment);
+      });
+    });
 
-  showEmployees('all');
-});
+    window.addEventListener('DOMContentLoaded', () => {
+      tabs.forEach((tab) => {
+        tab.classList.toggle('active', tab.getAttribute('data-department') === 'all');
+      });
+      showEmployees('all');
+    });
   </script>
 </section>
 
