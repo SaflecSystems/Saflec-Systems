@@ -775,10 +775,10 @@
         </svg>
       </button>
 
-      <!-- Testimonials -->
+      <!-- Testimonials Slider -->
       <div class="relative overflow-hidden flex-1 w-full max-w-full">
-        <div id="testimonial-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-          <!-- Injected via JS -->
+        <div id="testimonial-slider" class="flex gap-4 transition-transform duration-500 ease-in-out will-change-transform">
+          <!-- JS will inject slides here -->
         </div>
       </div>
 
@@ -806,38 +806,6 @@
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes slideInLeft {
-    from {
-      transform: translateX(100%);
-      opacity: 0.5;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      transform: translateX(-100%);
-      opacity: 0.5;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  .slide-left {
-    animation: slideInLeft 0.3s ease-in-out;
-  }
-
-  .slide-right {
-    animation: slideInRight 0.3s ease-in-out;
-  }
-</style>
 
 <script>
   const testimonials = [
@@ -873,47 +841,46 @@
     },
   ];
 
+  const slider = document.getElementById("testimonial-slider");
   let currentIndex = 0;
-  let animating = false;
+  let itemsPerSlide = getItemsPerSlide();
 
-  function renderTestimonials(direction = "next") {
-    const container = document.getElementById("testimonial-container");
-    if (animating) return;
+  function getItemsPerSlide() {
+    return window.innerWidth < 768 ? 1 : 3;
+  }
 
-    animating = true;
-    container.classList.remove("slide-left", "slide-right");
-    void container.offsetWidth; // trigger reflow
+  function renderSliderItems() {
+    slider.innerHTML = testimonials.map(t => `
+      <div class="w-full md:w-1/3 shrink-0">
+        <div class="bg-white p-6 rounded-lg shadow-md min-h-[320px] mx-1 flex flex-col justify-between">
+          <p class="text-blue-800 font-semibold">${t.name}</p>
+          <div class="flex flex-col justify-between flex-grow">
+            <p class="text-gray-700 my-4">${t.message}</p>
+            <p class="text-sm text-gray-500">${t.role}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
 
-    container.classList.add(direction === "next" ? "slide-left" : "slide-right");
-
-    setTimeout(() => {
-      container.innerHTML = "";
-
-      for (let i = 0; i < 3; i++) {
-        const index = (currentIndex + i) % testimonials.length;
-        const t = testimonials[index];
-        container.innerHTML += `
-          <div class="bg-white p-6 rounded-lg shadow-md min-h-[320px] flex flex-col justify-between">
-            <p class="text-blue-800 font-semibold">${t.name}</p>
-            <div class="flex flex-col justify-between flex-grow">
-              <p class="text-gray-700 my-4">${t.message}</p>
-              <p class="text-sm text-gray-500">${t.role}</p>
-            </div>
-          </div>`;
-      }
-
-      animating = false;
-    }, 300); // match animation duration
+  function updateSlider() {
+    itemsPerSlide = getItemsPerSlide();
+    const offset = (100 / itemsPerSlide) * currentIndex;
+    slider.style.transform = `translateX(-${offset}%)`;
   }
 
   function nextTestimonial() {
-    currentIndex = (currentIndex + 1) % testimonials.length;
-    renderTestimonials("next");
+    itemsPerSlide = getItemsPerSlide();
+    const maxIndex = testimonials.length - itemsPerSlide;
+    currentIndex = (currentIndex + 1 > maxIndex) ? 0 : currentIndex + 1;
+    updateSlider();
   }
 
   function prevTestimonial() {
-    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-    renderTestimonials("prev");
+    itemsPerSlide = getItemsPerSlide();
+    const maxIndex = testimonials.length - itemsPerSlide;
+    currentIndex = (currentIndex - 1 < 0) ? maxIndex : currentIndex - 1;
+    updateSlider();
   }
 
   function toggleReviewForm() {
@@ -924,13 +891,12 @@
   // Swipe Support
   let touchStartX = 0;
   let touchEndX = 0;
-  const swipeContainer = document.getElementById("testimonial-container");
 
-  swipeContainer.addEventListener('touchstart', (e) => {
+  slider.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   });
 
-  swipeContainer.addEventListener('touchend', (e) => {
+  slider.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     const deltaX = touchEndX - touchStartX;
     if (Math.abs(deltaX) > 50) {
@@ -938,8 +904,14 @@
     }
   });
 
-  // Initial render
-  renderTestimonials();
+  // Resize Handler
+  window.addEventListener('resize', () => {
+    itemsPerSlide = getItemsPerSlide();
+    updateSlider();
+  });
+
+  renderSliderItems();
+  updateSlider();
 </script>
 
 <!-- Meet The Team -->
